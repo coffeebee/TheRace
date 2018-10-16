@@ -1,0 +1,30 @@
+body{
+    background-image: url("marvel-civil-war.jpg");
+    background-size: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}
+
+#light{    
+    position: relative;
+    width: 90%;
+}
+
+.teams{
+    width:150px;
+    height:120px;
+    border: 2px solid white;
+    position: relative;
+    top:100px;
+}
+
+.sign{
+    width: 150px;
+    height: 150px;
+    border: white solid;
+    border-width: 5px;
+    position: relative;
+    top: 30px;
+    left: 30px;
+}
