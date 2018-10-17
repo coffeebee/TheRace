@@ -1,59 +1,95 @@
-const teamIron ={
-    name: "Tony's Team",
-    pic: `<img src='tony.jpg' alt='Tony' class='teams'>`
-};
-const teamCap ={
-    name: "Cap's Team",
-    pic: `<img src='cap.jpg' alt=''Murka' class='teams'>`
-};
-        
+//Arrays
 var light = new Array();
 light[0] = 'stop.jpg';
 light[1] = 'go.jpg';   
-var lightDesc = new Array();
-lightDesc[0] = 'stop';
-lightDesc[1] = 'go';
 
-//display light
-document.getElementById('light').innerHTML = `<img src = '${light[0]}' id='stop' class='sign' alt = '${lightDesc[0]}' onclick='change(1)'>`;
-                
-//change picture functions                
-function change(i){
+var teamI = new Array();
+teamI[0] = `<img src='tony.jpg' alt='Tony' class='teams' onclick='changeI(0)'>`;
+teamI[1] = `<img src='spiderman.jpg' alt='Spiderman' class='teams' onclick='changeI(1)'>`;
+teamI[2] = `<img src='vision.jpg' alt='Vision' class='teams' onclick='changeI(2)'>`;
+var teamC = new Array();
+teamC[0] = `<img src='cap.jpg' alt='Murka' class='teams' onclick='changeC(0)'>`;
+teamC[1] = `<img src='bucky.jpg' alt='Bucky Barnes' class='teams' onclick='changeC(1)'>`;   
+teamC[2] = `<img src='hawkeye.jpg' alt='Hawkeye' class='teams' onclick='changeC(2)'>`;
+
+var ironPic = teamI[0];
+var capPic = teamC[0];
+var timer;     
+
+//initial display 
+var stop = document.getElementById('light').innerHTML = `<img src='${light[0]}' id='stop' class='sign' alt='stop' onclick='changeLight(1)'>`;            
+document.getElementById('teamIron').innerHTML = ironPic; 
+document.getElementById('teamCap').innerHTML = capPic;
+
+//change light functions                
+function changeLight(i){
     if(i==1){                 
-        document.getElementById('light').innerHTML = `<img src = '${light[i]}' id='go' class='sign' alt = '${lightDesc[i]}' onclick='change(0)'>`;    
+        document.getElementById('light').innerHTML = `<img src='${light[i]}' id='go' class='sign' alt='go' onclick='changeLight(0)'>`;    
         race();
     }
     else{
-        reloadPage();
+        pause();
+        document.getElementById('light').innerHTML = stop;
     }       
-}  
-
-var ironPic = teamIron.pic;
-var capPic = teamCap.pic; 
-document.getElementById('teamIron').style.position = 'relative';
-document.getElementById('teamCap').style.position = 'relative';
-
-function race(){    
-    document.getElementById('teamIron').innerHTML = ironPic 
-    document.getElementById('teamCap').innerHTML = capPic;
-    setInterval(move, 100);
 }
-
+//change team pic
+function changeC(i){
+    i +=1;    
+    if(i == teamC.length){
+        i =0;
+    }
+    capPic = teamC[i];
+    document.getElementById('teamCap').innerHTML = capPic;    
+}
+function changeI(i){
+    i +=1;    
+    if(i == teamI.length){
+        i =0;
+    }
+    ironPic = teamI[i];
+    document.getElementById('teamIron').innerHTML = ironPic;      
+}    
+//Begin!!!
+function race(){    
+    timer = setInterval(move, 20);
+}
 function move(){ 
-    var ironMove = parseInt(document.getElementById('teamIron').style.left);       
-    ironMove += Math.ceil(Math.random() * 5);
-    
-    if(ironMove < 600){
-        document.getElementById('teamIron').style.left = ironMove+'px';
-    }else{
-        //winner
+    //2 teams movements    
+    var ironMove = parseInt(document.getElementById('teamIron').offsetLeft);       
+    ironMove += Math.ceil(Math.random() * 8);
+    var capMove = parseInt(document.getElementById('teamCap').offsetLeft);       
+    capMove += Math.ceil(Math.random() * 8);
+    //edge = finish line
+    var edge = window.innerWidth -200;
+    if(ironMove <edge && capMove <edge){
+        document.getElementById('teamIron').style.left = ironMove+'px';        
+        document.getElementById('teamCap').style.left = capMove+'px';
+    }
+    else{        
+        clearInterval(timer);
+        document.getElementById('light').innerHTML = stop;
+        winner();        
     }    
 }
-
-
-
-
-
-function reloadPage(){
-    location.reload();
+function winner(){
+    var tCap = document.getElementById('teamCap').style.left;
+    var tIron = document.getElementById('teamIron').style.left;
+    if(tIron > tCap){
+        document.getElementById('winner').innerHTML = "<img src='tonywins.gif' id='wins' alt='Tony Wins' onclick='resetPage()'>";
+    }
+    else if(tCap > tIron){
+        document.getElementById('winner').innerHTML = "<img src='capwins.gif' id='wins' alt='Captain Wins' onclick='resetPage()'>";
+    }else{
+        document.getElementById('winner').innerHTML = "<img src='thanos.gif' id='wins' alt='Captain Wins' onclick='resetPage()'>";
+    }
 }
+function pause(){
+    timer = clearInterval(timer);
+}
+function resetPage(){
+    document.getElementById('teamIron').style.left =0;
+    document.getElementById('teamCap').style.left =0;    
+    document.getElementById('winner').innerHTML = "";      
+}
+
+ 

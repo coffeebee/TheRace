@@ -1,24 +1,29 @@
 body{
-    background-image: url("marvel-civil-war.jpg");
+    background: url("marvel-civil-war.jpg");
     background-size: 100%;
     position: absolute;
     top: 0px;
     z-index: -1;
 }
-
 #light{    
     position: relative;
     width: 90%;
 }
-
-.teams{
+#teamIron{
+    position: relative;
+    top:100px;
+}
+#teamCap{
+    position: relative;
+    top:100px;
+}
+.teams{    
     width:150px;
     height:120px;
     border: 2px solid white;
     position: relative;
-    top:100px;
+    
 }
-
 .sign{
     width: 150px;
     height: 150px;
@@ -28,3 +33,12 @@ body{
     top: 30px;
     left: 30px;
 }
+#wins{
+    width:540px;
+    top: 65%;
+    left: 50%;
+    margin:-250px 0 0 -250px;
+    border: 5px white;
+    position:fixed;
+}
+
