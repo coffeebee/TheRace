@@ -10,7 +10,14 @@ var teamC = new Array();
 teamC[0] = `<img src='cap.jpg' alt='Murka' class='teams' onclick='changeC(0)'>`;
 teamC[1] = `<img src='bucky.jpg' alt='Bucky Barnes' class='teams' onclick='changeC(1)'>`;   
 teamC[2] = `<img src='hawkeye.jpg' alt='Hawkeye' class='teams' onclick='changeC(2)'>`;
-
+var winnersI = new Array();
+winnersI[0] = `<img src='tonywins.gif' id='wins' alt='Tony Wins' onclick='resetPage()'>`;
+winnersI[1] = `<img src='spidermanwins.gif' id='wins' alt='Spiderman Wins' onclick='resetPage()'>`;
+winnersI[2] = `<img src='visionwins.gif' id='wins' alt='Vision Wins' onclick='resetPage()'>`;
+var winnersC = new Array();
+winnersC[0] = `<img src='capwins.gif' id='wins' alt='Cap Wins' onclick='resetPage()'>`;
+winnersC[1] = `<img src='buckywins.gif' id='wins' alt='Bucky Wins' onclick='resetPage()'>`;
+winnersC[2] = `<img src='hawkeyewins.gif' id='wins' alt='Hawkeye Wins' onclick='resetPage()'>`;
 var ironPic = teamI[0];
 var capPic = teamC[0];
 var timer;     
@@ -70,14 +77,6 @@ function move(){
         winner();        
     }    
 }
-var winnersI = new Array();
-winnersI[0] = `<img src='tonywins.gif' id='wins' alt='Tony Wins' onclick='resetPage()'>`;
-winnersI[1] = `<img src='spidermanwins.gif' id='wins' alt='Spiderman Wins' onclick='resetPage()'>`;
-winnersI[2] = `<img src='visionwins.gif' id='wins' alt='Vision Wins' onclick='resetPage()'>`;
-var winnersC = new Array();
-winnersC[0] = `<img src='capwins.gif' id='wins' alt='Cap Wins' onclick='resetPage()'>`;
-winnersC[1] = `<img src='buckywins.gif' id='wins' alt='Bucky Wins' onclick='resetPage()'>`;
-winnersC[2] = `<img src='hawkeyewins.gif' id='wins' alt='Hawkeye Wins' onclick='resetPage()'>`;
 function winner(){
     var tCap = document.getElementById('teamCap').style.left;
     var tIron = document.getElementById('teamIron').style.left;
