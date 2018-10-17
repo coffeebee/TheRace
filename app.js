@@ -2,7 +2,6 @@
 var light = new Array();
 light[0] = 'stop.jpg';
 light[1] = 'go.jpg';   
-
 var teamI = new Array();
 teamI[0] = `<img src='tony.jpg' alt='Tony' class='teams' onclick='changeI(0)'>`;
 teamI[1] = `<img src='spiderman.jpg' alt='Spiderman' class='teams' onclick='changeI(1)'>`;
@@ -71,16 +70,33 @@ function move(){
         winner();        
     }    
 }
+var winnersI = new Array();
+winnersI[0] = `<img src='tonywins.gif' id='wins' alt='Tony Wins' onclick='resetPage()'>`;
+winnersI[1] = `<img src='spidermanwins.gif' id='wins' alt='Spiderman Wins' onclick='resetPage()'>`;
+winnersI[2] = `<img src='visionwins.gif' id='wins' alt='Vision Wins' onclick='resetPage()'>`;
+var winnersC = new Array();
+winnersC[0] = `<img src='capwins.gif' id='wins' alt='Cap Wins' onclick='resetPage()'>`;
+winnersC[1] = `<img src='buckywins.gif' id='wins' alt='Bucky Wins' onclick='resetPage()'>`;
+winnersC[2] = `<img src='hawkeyewins.gif' id='wins' alt='Hawkeye Wins' onclick='resetPage()'>`;
 function winner(){
     var tCap = document.getElementById('teamCap').style.left;
     var tIron = document.getElementById('teamIron').style.left;
     if(tIron > tCap){
-        document.getElementById('winner').innerHTML = "<img src='tonywins.gif' id='wins' alt='Tony Wins' onclick='resetPage()'>";
+        for(var i =0; i<teamI.length; i++){
+            if(teamI[i] == ironPic){
+                document.getElementById('winner').innerHTML = winnersI[i];
+            }
+        }        
     }
     else if(tCap > tIron){
-        document.getElementById('winner').innerHTML = "<img src='capwins.gif' id='wins' alt='Captain Wins' onclick='resetPage()'>";
-    }else{
-        document.getElementById('winner').innerHTML = "<img src='thanos.gif' id='wins' alt='Captain Wins' onclick='resetPage()'>";
+        for(var i =0; i<teamI.length; i++){
+            if(teamC[i] == capPic){
+                document.getElementById('winner').innerHTML = winnersC[i];
+            }
+        }
+    }
+    else{
+        document.getElementById('winner').innerHTML = `<img src='thanos.gif' id='wins' alt='Captain Wins' onclick='resetPage()'>`;
     }
 }
 function pause(){
